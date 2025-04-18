@@ -1,0 +1,633 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background: #86a8e7;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+}
+
+.container {
+    perspective: 1000px;
+    z-index: 10;
+}
+
+.card {
+    background: rgba(255, 255, 255, 0.95);
+    width: 85vw;
+    max-width: 600px;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    text-align: center;
+    position: relative;
+    transform: rotateY(0deg);
+    transition: transform 1s ease;
+    overflow: hidden;
+}
+
+.card:hover {
+    transform: rotateY(5deg);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+}
+
+.corner-decoration {
+    position: absolute;
+    font-size: 24px;
+    color: #FF5050;
+}
+
+.top-left {
+    top: 10px;
+    left: 10px;
+}
+
+.top-right {
+    top: 10px;
+    right: 10px;
+}
+
+.name-highlight {
+    font-family: 'Dancing Script', cursive;
+    font-size: 5rem;
+    color: #FF5050;
+    position: relative;
+    text-shadow: 3px 3px 6px rgba(0,0,0,0.1);
+    margin-bottom: 10px;
+    animation: glow 2s ease-in-out infinite alternate;
+}
+
+.happy {
+    font-family: 'Dancing Script', cursive;
+    color: #FF5050;
+    font-size: 3.5rem;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+    animation: bounce 2s infinite;
+}
+
+.stars-container {
+    margin: 10px 0;
+}
+
+.star {
+    display: inline-block;
+    color: gold;
+    font-size: 1.5rem;
+    margin: 0 10px;
+    animation: twinkle 1.5s ease-in-out infinite alternate;
+}
+
+.star:nth-child(2) {
+    animation-delay: 0.3s;
+}
+
+.star:nth-child(3) {
+    animation-delay: 0.6s;
+}
+
+.message {
+    font-size: 1.2rem;
+    line-height: 1.7;
+    color: #555;
+    margin: 30px 0;
+    padding: 0 15px;
+}
+
+.wishes {
+    font-family: 'Dancing Script', cursive;
+    color: #FF5050;
+    font-size: 1.8rem;
+    margin: 25px 0;
+    animation: colorChange 4s infinite;
+}
+
+.signature {
+    font-style: italic;
+    margin-top: 40px;
+    color: #555;
+    font-weight: 600;
+}
+
+.simple-border {
+    height: 2px;
+    width: 80%;
+    background-color: #FF5050;
+    margin: 15px auto;
+}
+
+#celebrate-btn {
+    background-color: #FF5050;
+    color: white;
+    border: none;
+    padding: 15px 35px;
+    font-size: 1.2rem;
+    border-radius: 50px;
+    cursor: pointer;
+    margin-top: 30px;
+    transition: all 0.3s ease;
+    outline: none;
+    box-shadow: 0 5px 15px rgba(255, 80, 80, 0.3);
+    font-weight: 600;
+}
+
+#celebrate-btn:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(255, 80, 80, 0.5);
+    background-color: #FF7070;
+}
+
+#celebrate-btn:active {
+    transform: translateY(0);
+}
+
+#magic-btn {
+    background: linear-gradient(135deg, #3498DB, #9B59B6);
+    color: white;
+    border: none;
+    padding: 15px 35px;
+    font-size: 1.2rem;
+    border-radius: 50px;
+    cursor: pointer;
+    margin: 30px 10px 0;
+    transition: all 0.3s ease;
+    outline: none;
+    box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
+    font-weight: 600;
+}
+
+#magic-btn:hover {
+    transform: translateY(-5px) rotate(3deg);
+    box-shadow: 0 8px 25px rgba(155, 89, 182, 0.5);
+}
+
+/* Cake */
+.birthday-cake {
+    position: relative;
+    width: 120px;
+    height: 120px;
+    margin: 20px auto 40px;
+}
+
+.cake-top, .cake-middle, .cake-bottom {
+    position: absolute;
+    background-color: #FFB6C1;
+    border-radius: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    box-shadow: inset 0 -5px 0 rgba(0,0,0,0.1);
+}
+
+.cake-top {
+    width: 60%;
+    height: 20%;
+    top: 0;
+    background-color: #FFB6C1;
+}
+
+.cake-middle {
+    width: 80%;
+    height: 30%;
+    top: 25%;
+    background-color: #FFB6C1;
+}
+
+.cake-bottom {
+    width: 100%;
+    height: 40%;
+    bottom: 10px;
+    background-color: #FFB6C1;
+}
+
+.plate {
+    position: absolute;
+    width: 140px;
+    height: 10px;
+    background-color: #f5f5f5;
+    border-radius: 50%;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+}
+
+.candle {
+    position: absolute;
+    width: 10px;
+    height: 35px;
+    background-color: #fff;
+    top: -35px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1;
+}
+
+.flame {
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    background-color: #FFC107;
+    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+    top: -14px;
+    left: 50%;
+    transform: translateX(-50%);
+    box-shadow: 0 0 10px #FFC107;
+    animation: flicker 0.5s infinite alternate;
+}
+
+/* Cake decorations */
+.cake-decoration {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: #FFD700;
+    border-radius: 50%;
+    z-index: 3;
+    animation: twinkle 1.5s infinite alternate;
+}
+
+.decoration1 {
+    top: 5px;
+    left: 30px;
+}
+
+.decoration2 {
+    top: 40px;
+    right: 20px;
+}
+
+.decoration3 {
+    bottom: 15px;
+    left: 15px;
+}
+
+/* Balloons */
+.balloon-container {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 0;
+}
+
+.balloon {
+    position: absolute;
+    width: 40px;
+    height: 50px;
+    border-radius: 50%;
+    animation: float 15s ease-in-out infinite;
+}
+
+.balloon:before {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 2px;
+    height: 20px;
+    background-color: rgba(0,0,0,0.2);
+}
+
+.balloon1 {
+    background-color: #FF5050;
+    left: 10%;
+    bottom: -100px;
+    animation-delay: 0s;
+}
+
+.balloon2 {
+    background-color: #5D9CEC;
+    left: 50%;
+    bottom: -100px;
+    animation-delay: 2s;
+}
+
+.balloon3 {
+    background-color: #FFCE54;
+    left: 80%;
+    bottom: -100px;
+    animation-delay: 4s;
+}
+
+/* Flowers */
+.flowers {
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.flower {
+    position: relative;
+    width: 30px;
+    height: 30px;
+    transform-origin: center bottom;
+    animation: sway 5s ease-in-out infinite alternate;
+}
+
+.flower:before {
+    content: '❀';
+    position: absolute;
+    font-size: 30px;
+    color: #FF5050;
+}
+
+.flower1:before {
+    color: #FF5050;
+}
+
+.flower2:before {
+    color: #FF9A8B;
+    font-size: 35px;
+}
+
+.flower3:before {
+    color: #FF69B4;
+}
+
+.flower4:before {
+    color: #9B59B6;
+    font-size: 28px;
+}
+
+.flower5:before {
+    color: #3498DB;
+    font-size: 32px;
+}
+
+/* Gift Box Animation */
+.gift-box {
+    position: relative;
+    width: 80px;
+    height: 80px;
+    margin: 30px auto 20px;
+    perspective: 1000px;
+    cursor: pointer;
+}
+
+.gift-container {
+    position: absolute;
+    width: 100%;
+    height: 75%;
+    bottom: 0;
+    background: linear-gradient(135deg, #FF5050, #FF9A8B);
+    border-radius: 5px;
+    transform-origin: bottom;
+    transition: transform 0.5s;
+}
+
+.gift-lid {
+    position: absolute;
+    width: 110%;
+    height: 25%;
+    top: 0;
+    left: -5%;
+    background: linear-gradient(135deg, #FF3030, #FF7A6B);
+    border-radius: 5px;
+    transform-origin: top;
+    transition: transform 0.5s;
+    z-index: 2;
+}
+
+.gift-ribbon {
+    position: absolute;
+    width: 10%;
+    height: 100%;
+    background: #FFD700;
+    left: 45%;
+    z-index: 3;
+}
+
+.gift-bow {
+    position: absolute;
+    width: 60%;
+    height: 40%;
+    top: -10%;
+    left: 20%;
+    z-index: 4;
+}
+
+.gift-bow:before, .gift-bow:after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 50%;
+    background: #FFD700;
+    border-radius: 50% 50% 0 0;
+}
+
+.gift-bow:before {
+    transform: rotate(-35deg);
+    left: -40%;
+    top: 10%;
+}
+
+.gift-bow:after {
+    transform: rotate(35deg);
+    right: -40%;
+    top: 10%;
+}
+
+.gift-box:hover .gift-lid {
+    transform: rotateX(-110deg);
+}
+
+.gift-box:hover .gift-container {
+    animation: gift-shake 0.5s;
+}
+
+/* Enhanced and new animations */
+.sparkles-container {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.sparkle {
+    position: absolute;
+    font-size: 24px;
+    animation: sparkle-float 7s ease-in infinite;
+    opacity: 0.7;
+}
+
+.sparkle1 { left: 20%; animation-delay: 0s; }
+.sparkle2 { left: 50%; animation-delay: 1.5s; }
+.sparkle3 { left: 80%; animation-delay: 0.8s; }
+
+/* Animated border for message */
+.animated-border {
+    height: 3px;
+    width: 0%;
+    background: linear-gradient(to right, #FF5050, #FF9A8B, #FF5050);
+    margin: 15px auto;
+    animation: expand-border 3s forwards, border-color-change 5s infinite alternate;
+}
+
+/* Ribbon decorations */
+.ribbon {
+    width: 150px;
+    height: 150px;
+    overflow: hidden;
+    position: absolute;
+}
+
+.ribbon span {
+    position: absolute;
+    display: block;
+    width: 225px;
+    padding: 8px 0;
+    background-color: #FF5050;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+    color: #fff;
+    font-size: 0.8em;
+    text-align: center;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transform: rotate(-45deg);
+    animation: ribbon-wave 2s infinite alternate;
+}
+
+.ribbon-top-left {
+    top: -10px;
+    left: -10px;
+}
+
+.ribbon-top-left span {
+    top: 30px;
+    left: -45px;
+    transform: rotate(-45deg);
+}
+
+.ribbon-top-right {
+    top: -10px;
+    right: -10px;
+}
+
+.ribbon-top-right span {
+    top: 30px;
+    right: -45px;
+    transform: rotate(45deg);
+}
+
+/* Fireworks container */
+.fireworks-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Falling elements container */
+.falling-elements {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* New Animations */
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+@keyframes flicker {
+    0% { opacity: 1; }
+    100% { opacity: 0.8; }
+}
+
+@keyframes float {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-50vh); }
+    100% { transform: translateY(-100vh); }
+}
+
+@keyframes twinkle {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 1; }
+}
+
+@keyframes colorChange {
+    0% { color: #FF5050; }
+    33% { color: #FF9A8B; }
+    66% { color: #FF69B4; }
+    100% { color: #FF5050; }
+}
+
+@keyframes glow {
+    0%, 100% { text-shadow: 0 0 5px rgba(255, 80, 80, 0.5); }
+    50% { text-shadow: 0 0 15px rgba(255, 80, 80, 0.8); }
+}
+
+@keyframes sway {
+    0%, 100% { transform: rotate(0deg); }
+    50% { transform: rotate(15deg); }
+}
+
+@keyframes sparkle-float {
+    0% { transform: translate(0, 100vh); opacity: 0; }
+    10% { opacity: 0.7; }
+    100% { transform: translate(0, -100px); opacity: 0; }
+}
+
+@keyframes text-wave {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(5px) skewX(5deg); }
+    75% { transform: translateX(-5px) skewX(-5deg); }
+}
+
+@keyframes expand-border {
+    0% { width: 0%; }
+    100% { width: 80%; }
+}
+
+@keyframes border-color-change {
+    0%, 100% { background: linear-gradient(to right, #FF5050, #FF9A8B, #FF5050); }
+    50% { background: linear-gradient(to right, #9B59B6, #3498DB, #9B59B6); }
+}
+
+@keyframes gift-shake {
+    0%, 100% { transform: rotate(0); }
+    20% { transform: rotate(5deg); }
+    40% { transform: rotate(-5deg); }
+    60% { transform: rotate(3deg); }
+    80% { transform: rotate(-3deg); }
+}
+
+@keyframes ribbon-wave {
+    0%, 100% { transform: rotate(-45deg); }
+    50% { transform: rotate(-43deg); }
+}
+
+@keyframes circle-scale {
+    0% { transform: scale(0); opacity: 1; }
+    100% { transform: scale(1.5); opacity: 0; }
+}
+
+@keyframes firework-explosion {
+    0% { transform: scale(0); opacity: 1; }
+    100% { transform: scale(1); opacity: 0; }
+}
